@@ -1,6 +1,10 @@
 import express from "express";
 import {
-  createRequest,getRequests,updateRequestStatus,deleteRequest} from "../controllers/AllowanceController.js";
+  createRequest,
+  getRequests,
+  updateRequestStatus,
+  deleteRequest
+} from "../controllers/AllowanceController.js";
 
 const router = express.Router();
 
