@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
-import allowanceRoutes from "./routes/allowanceRoutes.js"; 
+// import allowanceRoutes from "./routes/allowanceRoutes.js"; 
 import userRoutes from './routes/userRoutes.js';
 
 dotenv.config();
@@ -21,7 +21,7 @@ mongoose.connect(process.env.MONGO_URI, {
   });
 
 
-app.use("/api/allowance", allowanceRoutes);
+// app.use("/api/allowance", allowanceRoutes);
 app.use("/api/allowance/users", userRoutes);
 
 const PORT = process.env.PORT || 5000;
