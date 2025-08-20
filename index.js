@@ -21,7 +21,7 @@ mongoose.connect(process.env.MONGO_URI, {
 
 
 app.get("/", (req, res) => {
-  res.send(" Server is running! Use /api/allowance/users for user routes.");
+  res.send(" Server is running!");
 });
 
 app.use("/api/allowance/users", userRoutes);
