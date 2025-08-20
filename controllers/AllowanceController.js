@@ -18,13 +18,20 @@ export const createRequest = async (req, res) => {
       amount,
       description
     });
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: "hr@company.com",
-      subject: `New Allowance Request from ${user.name}`,
-      text: `Details:\nAmount: ${amount}\nDescription: ${description}\nDate: ${new Date().toLocaleDateString()}`
-    });
-    res.status(201).json(newRequest);
+    let emailSent = false;
+    try {
+      await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to: "hr@company.com",
+        subject: `New Allowance Request from ${user.name}`,
+        text: `Details:\nAmount: ${amount}\nDescription: ${description}\nDate: ${new Date().toLocaleDateString()}`
+      });
+      emailSent = true;
+    } 
+    catch (emailError) {
+      console.warn("Email not sent:", emailError?.message || emailError);
+    }
+    res.status(201).json({ request: newRequest, emailSent });
   } 
   catch (error) {
     res.status(500).json({ message: error.message });
